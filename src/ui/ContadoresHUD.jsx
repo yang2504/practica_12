@@ -21,7 +21,7 @@ export default function ContadoresHUD({
   return (
     <div style={estilos.contenedorPrincipal}>
       <div style={estilos.hud}>
-        <h2 style={{ margin: '0 0 10px 0' }}>Juego de la Rana 🐸</h2>
+        <h2 style={{ margin: '0 0 10px 0' }}>Juego del carrito</h2>
         <p>Tiempo: <strong>{tiempo.toFixed(1)} s</strong></p>
         <p>Choques: <strong style={{ color: '#ff4757' }}>{colisiones}</strong></p>
         {juegoTerminado && <h3 style={{ color: '#2ed573' }}>¡Meta Alcanzada!</h3>}
