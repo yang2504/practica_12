@@ -22,11 +22,13 @@ function App() {
   return (
     <div style={{ width: '100vw', height: '100vh', position: 'relative' }}>
       
-      {/* 1. Capa 3D: Le pasamos los estados de inicio/fin */}
+      {/* 1. Capa 3D: Le pasamos los estados y las funciones */}
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
         <Escena 
           juegoIniciado={juegoIniciado} 
           juegoTerminado={juegoTerminado} 
+          manejarChoque={manejarChoque}
+          llegarMeta={() => setJuegoTerminado(true)}
         />
       </div>
 

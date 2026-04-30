@@ -1,27 +1,34 @@
 import { Canvas } from '@react-three/fiber';
-import { Physics, RigidBody } from '@react-three/rapier';
-import ObstaculoPrueba from './ObstaculoPrueba';
+import { Physics } from '@react-three/rapier';
+import Jugador from './Jugador';
+import Obstaculos from './Obstaculos';
 
-export default function Escena({ juegoIniciado, juegoTerminado }) {
+export default function Escena({ juegoIniciado, juegoTerminado, manejarChoque, llegarMeta }) {
   return (
-    <Canvas camera={{ position: [0, 10, 10], fov: 50 }}>
+    // Cambiamos la posición de la cámara
+    <Canvas camera={{ position: [0, 18, 18], fov: 45 }}>
       <ambientLight intensity={0.5} />
       <directionalLight position={[10, 10, 10]} intensity={1.5} castShadow />
 
       <Physics>
-        {/* El Suelo */}
-        <RigidBody type="fixed">
-          <mesh position={[0, -0.5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-            <planeGeometry args={[20, 30]} />
-            <meshStandardMaterial color="#34495e" />
-          </mesh>
-        </RigidBody>
-
-        {/* Nuestro obstáculo animado */}
-        <ObstaculoPrueba 
+        
+        {/* Jugador y Suelo */}
+        <Jugador 
           juegoIniciado={juegoIniciado} 
           juegoTerminado={juegoTerminado} 
+          manejarChoque={manejarChoque}
+          llegarMeta={llegarMeta}
         />
+
+        {/* Tráfico (Los autos) */}
+        <Obstaculos juegoIniciado={juegoIniciado} />
+
+        {/* LÍNEA DE META (Visual) Punto B */}
+        <mesh position={[0, -0.4, -15.5]} rotation={[-Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[20, 2]} />
+          <meshStandardMaterial color="#f1c40f" /> {/* Franja amarilla */}
+        </mesh>
+
       </Physics>
     </Canvas>
   );
