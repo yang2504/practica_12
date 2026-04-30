@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import ContadoresHUD from './ui/ContadoresHUD';
 import Escena from './3d/Escena';
-import './App.css';
 
 function App() {
-  // Los estados maestros del juego ahora viven aquí
   const [juegoIniciado, setJuegoIniciado] = useState(false);
   const [juegoTerminado, setJuegoTerminado] = useState(false);
   const [colisiones, setColisiones] = useState(0);
@@ -20,9 +18,9 @@ function App() {
   };
 
   return (
-    <div style={{ width: '100vw', height: '100vh', position: 'relative' }}>
+    <div style={{ width: '100vw', height: '100vh', position: 'relative', overflow: 'hidden' }}>
       
-      {/* 1. Capa 3D: Le pasamos los estados y las funciones */}
+      {/* Capa 3D al fondo */}
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
         <Escena 
           juegoIniciado={juegoIniciado} 
@@ -32,14 +30,12 @@ function App() {
         />
       </div>
 
-      {/* 2. Capa UI: Le pasamos los estados y funciones de control */}
+      {/* Interfaz de Usuario por encima */}
       <ContadoresHUD 
         juegoIniciado={juegoIniciado}
         juegoTerminado={juegoTerminado}
         colisiones={colisiones}
         iniciarJuego={iniciarJuego}
-        manejarChoque={manejarChoque}
-        llegarMeta={() => setJuegoTerminado(true)}
       />
       
     </div>
